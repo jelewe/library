@@ -1,0 +1,45 @@
+body {
+    font-family: 'Lora', serif;
+    font-size: 15px;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+
+#container {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 1fr 4fr;
+}
+
+#header {
+    grid-area: 1 / 1 / 2 / 5;
+    background: #20131c;
+    color: #c79532;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 2rem;
+    padding: 1rem;
+    min-height: 15vh;
+}
+
+#header img {
+    height: 3rem;
+    width: 3rem;
+    margin-right: 1rem;
+    margin-left: 1rem;
+}
+
+#sidebar {
+    background: #1b263b;
+    color: #c79532;
+    text-align: center;
+
+}
+
+#content {
+    background: #4d1526;
+    height: 80vh;
+}
