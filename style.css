@@ -42,4 +42,18 @@ body {
 #content {
     background: #4d1526;
     height: 80vh;
+    display: grid;
+    overflow: auto;
+    grid-auto-flow: column;
+    padding: 1.5rem;
+}
+
+.book {
+    text-align: center;
+    color: #20131c;
+    background: #70798c;
+    height: 15rem;
+    width: 8rem;
+    padding: 0.2rem;
+    display: inline;
 }
