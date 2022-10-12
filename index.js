@@ -37,7 +37,10 @@ function removeBook() {
   let index = this.parentElement.getAttribute("data-index");
   shelf.removeChild(this.parentElement);
   myLibrary.splice(index, 1);
-  console.log(myLibrary);
+  let children = document.getElementsByClassName('book');
+  Array.from(children).forEach(function (c) {
+  c.setAttribute("data-index", Array.from(children).indexOf(c));
+  })
   return myLibrary;
 }
 
