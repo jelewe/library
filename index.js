@@ -32,6 +32,21 @@ function Book(author, title, read) {
    this.read= read.value;
 };
 
+function readToggle() {
+  let index = this.parentElement.getAttribute("data-index");
+  i = Number(index);
+  if (myLibrary[i].read == "Read") {
+    this.innerText= "Unread";
+    myLibrary[i].read = 'Unread';
+    return myLibrary[i].read;
+  } else {
+    this.innerText="Read";
+    myLibrary[i].read = 'Read';
+    return myLibrary[i].read;
+  }
+  
+};
+
 function removeBook() {
   let index = this.parentElement.getAttribute("data-index");
   shelf.removeChild(this.parentElement);
@@ -41,10 +56,6 @@ function removeBook() {
   c.setAttribute("data-index", Array.from(children).indexOf(c));
   })
   return myLibrary;
-};
-
-function readToggle () {
-
 };
 
 function createReadBtn(b, div) {
