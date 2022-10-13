@@ -1,11 +1,10 @@
 const shelf = document.querySelector('#content');
 
-const submitBtn = document.querySelector('#submit');
-submitBtn.addEventListener('click', addBookToLibrary);
+const form = document.querySelector('.form');
 
-const author = document.querySelector('#author');
-const title = document.querySelector('#title');
-const read = document.querySelector('#read');
+const author = form.author;
+const title = form.title;
+const read = form.status;
 
 let myLibrary = [
    {
@@ -31,6 +30,7 @@ function Book(author, title, read) {
    this.author= author.value;
    this.title= title.value;
    this.read= read.value;
+   console.log(read.id)
 };
 
 function removeBook() {
@@ -42,12 +42,34 @@ function removeBook() {
   c.setAttribute("data-index", Array.from(children).indexOf(c));
   })
   return myLibrary;
-}
+};
 
+function readToggle () {
 
-function addBookToLibrary(event) {
+};
+
+function createReadBtn(b, div) {
+  let readBtn = document.createElement("button");
+   readBtn.classList.add('readBtn');
+   readBtn.innerText= b.read;
+   readBtn.addEventListener('click', readToggle);
+    div.appendChild(readBtn);
+    return readBtn;
+};
+
+function createDelBtn(div) {
+  let btn = document.createElement("button");
+  btn.classList.add('removeBtn');
+  btn.innerText="Remove";
+  btn.addEventListener('click', removeBook);
+  div.appendChild(btn);
+  return btn;
+};
+
+form.addEventListener('submit', (event) => {
   event.preventDefault(); 
   let newBook = new Book(author, title, read);
+  console.log(newBook);
   myLibrary.push(newBook);
    let div = document.createElement('div');
    div.classList.add('book');
@@ -55,18 +77,12 @@ function addBookToLibrary(event) {
    div.innerText = `${(newBook.title)}
 
    ${(newBook.author)}
-   
-   ${(newBook.read)}
-   
    `;
-   let btn = document.createElement("button");
-   btn.classList.add('removeBtn');
-   btn.innerText="Remove";
-   btn.addEventListener('click', removeBook);
-   div.appendChild(btn);
+  createReadBtn(newBook, div);
+  createDelBtn(div);
    shelf.appendChild(div);
   document.querySelector('form').reset();
-};
+});
 
 function displayLibrary() {
   myLibrary.forEach(function (b) {
@@ -76,15 +92,9 @@ function displayLibrary() {
     div.innerText = `${(b.title)}
 
     ${(b.author)}
-    
-    ${(b.read)}
-    
     `;
-    let btn = document.createElement("button");
-    btn.classList.add('removeBtn');
-    btn.innerText="Remove";
-    btn.addEventListener('click', removeBook);
-    div.appendChild(btn);
+    createReadBtn(b, div);
+    createDelBtn(div);
     shelf.appendChild(div);
     return div;
   })

@@ -67,3 +67,11 @@ body {
     align-self: flex-end;
     justify-self: center;
 }
+
+.readBtn {
+    font-family:  'Lora', serif;
+    height: 1.5rem;
+    width: 4rem;
+    align-self: flex-end;
+    justify-self: center;
+}
