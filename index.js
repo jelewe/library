@@ -30,7 +30,6 @@ function Book(author, title, read) {
    this.author= author.value;
    this.title= title.value;
    this.read= read.value;
-   console.log(read.id)
 };
 
 function removeBook() {
@@ -66,39 +65,33 @@ function createDelBtn(div) {
   return btn;
 };
 
-form.addEventListener('submit', (event) => {
-  event.preventDefault(); 
-  let newBook = new Book(author, title, read);
-  console.log(newBook);
-  myLibrary.push(newBook);
-   let div = document.createElement('div');
-   div.classList.add('book');
-   div.setAttribute("data-index", myLibrary.indexOf(newBook));
-   div.innerText = `${(newBook.title)}
-
-   ${(newBook.author)}
-   `;
-  createReadBtn(newBook, div);
-  createDelBtn(div);
-   shelf.appendChild(div);
-  document.querySelector('form').reset();
-});
-
-function displayLibrary() {
-  myLibrary.forEach(function (b) {
-    let div = document.createElement('div');
+function createBookCard(b) {
+  let div = document.createElement('div');
     div.classList.add('book');
     div.setAttribute("data-index", myLibrary.indexOf(b))
     div.innerText = `${(b.title)}
 
     ${(b.author)}
     `;
+    shelf.appendChild(div);
     createReadBtn(b, div);
     createDelBtn(div);
-    shelf.appendChild(div);
     return div;
+};
+
+//adds new book based on form input
+form.addEventListener('submit', (event) => {
+  event.preventDefault(); 
+  let newBook = new Book(author, title, read);
+  myLibrary.push(newBook);
+   createBookCard(newBook);
+  document.querySelector('form').reset();
+});
+
+function displayLibrary() {
+  myLibrary.forEach(function (b) {
+    createBookCard(b);
   })
-  
 };
 
 displayLibrary()
